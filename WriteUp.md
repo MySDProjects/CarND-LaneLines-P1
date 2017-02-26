@@ -11,9 +11,12 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/grayscale.jpg "Grayscale"
-
----
+[image1]: ./writeup_images/color_filter.jpg "Color Filter"
+[image2]: ./writeup_images/gray.jpg "Gray Scale"
+[image3]: ./writeup_images/region.jpg "Region of Interest"
+[image4]: ./writeup_images/edges.jpg "Canny Edge Detection"
+[image5]: ./writeup_images/hough.jpg "Hough Lines"
+[image6]: ./writeup_images/final.jpg "Final Output"
 
 ### Reflection
 
@@ -22,23 +25,23 @@ The goals / steps of this project are the following:
 My pipeline consisted of the following steps:
 * A color filter. I converted the image to the HLS color space and constructed separate filters for white (a high pass filter on Luminosity) and yellow (Hue between 20 - 50, high saturation, high luminosity). Those filters were combined into a single mask, which was applied to the original image using a bitwise_and. The resulting images contained only white and yellow pixels.
 
-[image1]: ./writeup_images/color_filter.jpg "Color Filter"
+![Color][image1]
 
 * A conversion to grayscale to prepare the image for Canny Edge detection. Edge detection is based on image gradients, so it is necessary to convert the image to a single channel for this to work well.
 
-[image2]: ./writeup_images/gray.jpg "Gray Scale"
+![image2]
 
 * Filtering out the region of interest to reduce computational load, and restrict the image processing to only the region of the image where the lane lines nearest the car should lie. This entailed removing left and right portions of the image, and roughly the top half of the image, corresponding to the sky.
 
-[image3]: ./writeup_images/region.jpg "Region of Interest"
+![image3]
 
 * Smoothing the image using a Gaussian Blur (7 pixels), and applying Canny Edge detection. I set the low threshold for Canny to a difference of 120, and the high to double that, at 240. 
 
-[image4]: ./writeup_images/edges.jpg "Canny Edge Detection"
+![image4]
 
 * Applying the hough transform to the edge image. I experimented with different settings for min line length, max line gap, and thresholds, and settled on (20,20,30) respectively. At this point the image can be annotated with every line segment detected in the image using the weighted_img function provided in the setup code.
 
-[image5]: ./writeup_images/hough.jpg "Hough Lines"
+![image5]
 
 In order to draw a single line on the left and right lanes, I modified the draw_lines() function by:
   * assuming the left lane line would have the steepest negative slope, and the right lane line the steepest positive slope
@@ -50,7 +53,7 @@ In order to draw a single line on the left and right lanes, I modified the draw_
   * I then found the intersection of these lines (around the center of the image). I also found the intersection of both the     left and right lines with the bottom of the image (y=number of rows).
   * I drew lines from an offset (50 pixels) back from the intersection point on each line to the bottom of the image.
 
-[image5]: ./writeup_images/final.jpg "Final Output"
+![image6]
 
 ###2. Identify potential shortcomings with your current pipeline
 
