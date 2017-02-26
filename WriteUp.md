@@ -13,7 +13,7 @@ The goals / steps of this project are the following:
 
 [image1]: ./writeup_images/color_filter.jpg "Color Filter"
 [image2]: ./writeup_images/gray.jpg "Gray Scale"
-[image3]: ./writeup_images/region.jpg "Region of Interest"
+[image3]: ./writeup_images/crop.jpg "Region of Interest"
 [image4]: ./writeup_images/edges.jpg "Canny Edge Detection"
 [image5]: ./writeup_images/hough.jpg "Hough Lines"
 [image6]: ./writeup_images/final.jpg "Final Output"
